@@ -1,5 +1,6 @@
 import Home from "@/views/home/Home.vue";
 import Login from "@/views/Login.vue";
+import Register from "@/views/Register.vue";
 
 /**
  *
@@ -26,9 +27,16 @@ export const staticRoutes = [
   },
   {
     name: "Login",
-    path: "/login",
+    path: "/user/login",
     component: Login,
     meta: { title: "登录", icon: "el-icon-eleme" },
+    hidden: true,
+  },
+  {
+    name: "Register",
+    path: "/user/register",
+    component: Register,
+    meta: { title: "注册", icon: "el-icon-eleme" },
     hidden: true,
   },
 ];

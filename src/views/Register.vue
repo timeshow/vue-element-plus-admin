@@ -1,29 +1,31 @@
 <template>
   <div class="main">
-    <h1 class="title">{{ t("user.login.form.title") }}</h1>
+    <h1 class="title">
+      {{ t("user.register.form.title") }}
+    </h1>
     <el-form :model="modelRef" :rules="rulesRef" ref="formRef">
       <el-form-item label="" prop="username">
         <el-input
           v-model="modelRef.username"
-          :placeholder="t('user.login.form-item-username')"
+          :placeholder="t('user.register.form-item-username')"
           @keydown.enter="handleSubmit"
-        >
-          <template #prefix
-            ><i class="el-icon-user el-input__icon"></i
-          ></template>
-        </el-input>
+        />
       </el-form-item>
       <el-form-item label="" prop="password">
         <el-input
-          v-model="modelRef.password"
           type="password"
-          :placeholder="t('user.login.form-item-password')"
+          v-model="modelRef.password"
+          :placeholder="t('user.register.form-item-password')"
           @keydown.enter="handleSubmit"
-        >
-          <template #prefix
-            ><i class="el-icon-unlock el-input__icon"></i
-          ></template>
-        </el-input>
+        />
+      </el-form-item>
+      <el-form-item label="" prop="confirm">
+        <el-input
+          type="password"
+          v-model="modelRef.confirm"
+          :placeholder="t('user.register.form-item-confirmpassword')"
+          @keydown.enter="handleSubmit"
+        />
       </el-form-item>
       <el-form-item>
         <el-button
@@ -32,17 +34,20 @@
           @click="handleSubmit"
           :loading="submitLoading"
         >
-          {{ t("user.login.form.btn-submit") }}
+          {{ t("user.register.form.btn-submit") }}
         </el-button>
         <div class="text-align-right">
-          <router-link to="/user/register">
-            {{ t("user.login.form.btn-jump") }}
+          <router-link to="/user/login">
+            {{ t("user.register.form.btn-jump") }}
           </router-link>
         </div>
       </el-form-item>
+
       <el-alert
-        v-if="loginStatus === 'error' && !submitLoading"
-        :title="t('user.login.form.login-error')"
+        v-if="
+          errorMsg !== '' && typeof errorMsg !== 'undefined' && !submitLoading
+        "
+        :title="errorMsg"
         type="error"
         show-icon
         :closable="false"
@@ -51,87 +56,93 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, reactive, ref, watch, Ref } from "vue";
-import { useI18n } from "vue-i18n";
+import { computed, defineComponent, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import { useI18n } from "vue-i18n";
 import { ElForm, ElMessage } from "element-plus";
-import { LoginParamsType } from "@/type/user.d";
-import { StateType as UserLoginStateType } from "@/store/module/user";
-
-interface UserLoginSetup {
+import { RegisterParamsType } from "@/type/user.d";
+import { StateType as RegisterStateType } from "@/store/module/user";
+interface UserRegisterSetup {
   t: Function;
-  modelRef: LoginParamsType;
+  modelRef: RegisterParamsType;
   rulesRef: any;
   formRef: typeof ElForm;
   submitLoading: boolean;
   handleSubmit: () => Promise<void>;
-  loginStatus?: "ok" | "error";
+  errorMsg?: string;
 }
-
 export default defineComponent({
-  name: "UserLogin",
-  components: {},
-  setup(): UserLoginSetup {
+  name: "UserRegister",
+  setup(): UserRegisterSetup {
     const router = useRouter();
-    const { currentRoute } = router;
-    const store = useStore<{ user: UserLoginStateType }>();
+    const store = useStore<{ user: RegisterStateType }>();
     const { t } = useI18n();
-    console.log(store);
     // 表单值
-    const modelRef = reactive<LoginParamsType>({
+    const modelRef = reactive<RegisterParamsType>({
       username: "",
       password: "",
+      confirm: "",
     });
     // 表单验证
     const rulesRef = reactive({
       username: [
         {
           required: true,
-          message: t("user.login.form-item-username.required"),
+          message: t("user.register.form-item-username.required"),
         },
       ],
       password: [
         {
           required: true,
-          message: t("user.login.form-item-password.required"),
+          message: t("user.register.form-item-password.required"),
+        },
+      ],
+      confirm: [
+        {
+          validator: (rule: any, value: string, callback: any) => {
+            if (value === "") {
+              return Promise.reject(
+                t("user.register.form-item-password.required")
+              );
+            } else if (value !== modelRef.password) {
+              return Promise.reject(
+                t("user.register.form-item-confirmpassword.compare")
+              );
+            } else {
+              return Promise.resolve();
+            }
+          },
         },
       ],
     });
     // form
     const formRef = ref<typeof ElForm>();
-    // 登录loading
+    // 注册loading
     const submitLoading = ref<boolean>(false);
-    // 登录
+    // 注册
     const handleSubmit = async () => {
       submitLoading.value = true;
       try {
         const valid: boolean | undefined = await formRef.value?.validate();
         if (valid === true) {
-          console.log(store);
-          const res: boolean = await store.dispatch("user/login", modelRef);
+          const res: boolean = await store.dispatch("user/register", modelRef);
           if (res === true) {
-            ElMessage.success(t("user.login.form.login-success"));
-            const { redirect, ...query } = currentRoute.value.query;
-            router.replace({
-              path: (redirect as string) || "/",
-              query: {
-                ...query,
-              },
-            });
+            ElMessage.success(t("user.register.form.register-success"));
+            router.replace("/user/login");
           }
         }
       } catch (error) {
-        // console.log(error);
+        console.log("error", error);
         ElMessage.warning(t("app.global.form.validatefields.catch"));
       }
       submitLoading.value = false;
     };
-    // 登录状态
-    const loginStatus = computed<"ok" | "error" | undefined>(
-      () => store.state.user.loginStatus
-    );
 
+    // 注册状态
+    const errorMsg = computed<string | undefined>(
+      () => store.state.user.errorMsg
+    );
     return {
       t,
       modelRef,
@@ -139,7 +150,7 @@ export default defineComponent({
       formRef: (formRef as unknown) as typeof ElForm,
       submitLoading: (submitLoading as unknown) as boolean,
       handleSubmit,
-      loginStatus: (loginStatus as unknown) as "ok" | "error" | undefined,
+      errorMsg: (errorMsg as unknown) as string,
     };
   },
 });
