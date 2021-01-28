@@ -1,0 +1,4 @@
+const enUS = {
+
+}
+export de

@@ -1,0 +1,3 @@
+const cn = {
+    log
+}
