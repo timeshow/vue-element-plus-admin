@@ -1,6 +1,8 @@
+import Layout from '@/layout/index.vue'
 import Home from "@/views/home/Home.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
+import Workplace from '@/views/home/Workplace.vue'
 
 /**
  *
@@ -17,13 +19,22 @@ import Register from "@/views/Register.vue";
 
 export const staticRoutes = [
   {
+    name: "Home",
     path: "/",
-    name: "首页",
-    component: Home,
-    children: [],
+    component: Layout,
+    redirect: "/home/workplace",
     meta: {
+      title: "首页",
       icon: "el-icon-s-home",
     },
+    children: [
+      {
+        name: "Workplace",
+        path: "/home/workplace",
+        component: Workplace,
+        meta: { title: "工作台", icon: "el-icon-s-tools" },
+      },
+    ],
   },
   {
     name: "Login",

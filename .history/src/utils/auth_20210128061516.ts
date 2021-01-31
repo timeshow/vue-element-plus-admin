@@ -1,2 +1,0 @@
-import localforage from 'localforage'
-

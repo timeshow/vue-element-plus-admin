@@ -1,5 +1,0 @@
-const en = {
-    login: {
-        title:
-    }
-}

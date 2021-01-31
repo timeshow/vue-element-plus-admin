@@ -1,10 +1,11 @@
 import { createStore, Store, useStore as baseUseStore } from "vuex";
-import { ModuleType, StateType } from "@/store/global";
+import global from './global'
 import user from "./module/user";
 
-export const store = createStore({
+export const store = createStore<any>({
   modules: {
-    user,
+    global,
+    user
   },
 });
 
