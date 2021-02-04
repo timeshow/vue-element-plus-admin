@@ -1,14 +1,13 @@
 /**
  * 自定义 token 操作
  */
-import localforage from 'localforage';
 import settings from "@/config/settings";
 
 /**
  * 获取本地Token
  */
 export const getToken = async (): Promise<string | null> => {
-  return await localforage.getItem(settings.siteTokenKey);
+  return await localStorage.getItem(settings.siteTokenKey);
 };
 
 /**
@@ -16,7 +15,7 @@ export const getToken = async (): Promise<string | null> => {
  */
 export const setToken = async (token: string): Promise<boolean> => {
   try {
-    await localforage.setItem(settings.siteTokenKey, token);
+    await localStorage.setItem(settings.siteTokenKey, token);
     return true;
   } catch (error) {
     return false;
@@ -28,7 +27,7 @@ export const setToken = async (token: string): Promise<boolean> => {
  */
 export const removeToken = async (): Promise<boolean> => {
   try {
-    await localforage.removeItem(settings.siteTokenKey);
+    await localStorage.removeItem(settings.siteTokenKey);
     return true;
   } catch (error) {
     return false;

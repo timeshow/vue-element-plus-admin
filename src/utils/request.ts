@@ -2,11 +2,10 @@
  * 自定义 request 网络请求工具,基于axios
  */
 import axios, { AxiosPromise, AxiosRequestConfig, AxiosResponse } from "axios";
-import { ElMessageBox, ElMessage, ElNotification } from "element-plus";
-//import store from '@/store'
-import { getToken, setToken } from "@/utils/auth";
+import { ElNotification } from "element-plus";
 import router from "@/router";
 import settings from "@/config/settings";
+import { getToken, setToken } from "@/utils/auth";
 
 export interface ResponseData {
   code: number;
@@ -32,33 +31,24 @@ const serverCodeMessage: { [key: number]: string } = {
 };
 
 /**
- * 配置request请求时的默认参数
- */
-const request = axios.create({
-  baseURL: process.env.VUE_APP_APIHOST, // url = api url + request url
-  withCredentials: true, // 当跨域请求时发送cookie
-  timeout: 50000, // 请求超时时间,5000(单位毫秒) / 0 不做限制
-});
-
-/**
  * 异常处理程序
  */
 const errorHandler = (error: any) => {
   const { response, message } = error;
   if (message === "CustomError") {
-    //自定义错误
+    // 自定义错误
     const { config, data } = response;
-    const { url, baseUrl } = config;
+    const { url, baseURL } = config;
     const { code, msg } = data;
-    const requestUrl = url.split("?")[0].replace(baseUrl, "");
-    const noVerifyBool = settings.ajaxResponseNoVerifyUrl.includes(requestUrl);
+    const reqUrl = url.split("?")[0].replace(baseURL, "");
+    const noVerifyBool = settings.ajaxResponseNoVerifyUrl.includes(reqUrl);
     if (!noVerifyBool) {
       ElNotification({
         type: "error",
         title: `提示`,
         message: customCodeMessage[code] || msg || "Error",
       });
-      //未登录
+
       if (code === 10002) {
         router.replace("/user/login");
       }
@@ -86,6 +76,15 @@ const errorHandler = (error: any) => {
   return Promise.reject(error);
 };
 
+/**
+ * 配置request请求时的默认参数
+ */
+const request = axios.create({
+  baseURL: process.env.VUE_APP_APIHOST, // url = api url + request url
+  withCredentials: true, // 当跨域请求时发送cookie
+  timeout: 5000, // 请求超时时间,5000(单位毫秒) / 0 不做限制
+});
+
 // 全局设置 - post请求头
 // request.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 
@@ -106,7 +105,7 @@ request.interceptors.request.use(
     if (headerToken) {
       config.headers[settings.ajaxHeadersTokenKey] = headerToken;
     }
-
+    console.log(config);
     return config;
   }
   /* error=> {} */ // 已在 export default catch
@@ -139,7 +138,6 @@ request.interceptors.response.use(
   /* error => {} */ // 已在 export default catch
 );
 
-//export default request
 /**
  * ajax 导出
  *
@@ -160,7 +158,10 @@ request.interceptors.response.use(
  * ......
  */
 export default function (config: AxiosRequestConfig): AxiosPromise<any> {
-  return request(config)
+  var req = request(config)
     .then((response: AxiosResponse) => response.data)
     .catch((error) => errorHandler(error));
+  console.log("req");
+  console.log(req);
+  return req;
 }

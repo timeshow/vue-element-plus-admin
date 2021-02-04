@@ -39,7 +39,7 @@ export interface SettingsType {
 }
   
 const settings: SettingsType = {
-    siteTitle: 'ADMIN-ELEMENT-VUE',
+    siteTitle: 'Vue-Element-Plus-Admin',
     topNavEnable: true,
     headFixed: true,
     siteTokenKey: 'admin_element_vue_token',

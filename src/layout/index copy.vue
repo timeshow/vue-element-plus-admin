@@ -20,23 +20,23 @@
       >
       </right-top>
 
-      <!-- <div class="indexlayout-right-main">
+      <div class="indexlayout-right-main">
         <permission :roles="routeItem.roles">
           <router-view></router-view>
         </permission>
         <right-footer></right-footer>
-      </div> -->
+      </div>
     </div>
 
     <settings></settings>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, computed, onMounted, ref } from "vue";
+import { defineComponent, computed } from "vue";
 import { useStore } from "vuex";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { StateType as GlobalStateType } from "@/store/global";
-import { StateType as UserStateType, CurrentUser } from "@/store/module/user";
+import { StateType as UserStateType } from "@/store/module/user";
 import {
   vueRoutes,
   RoutesDataItem,
@@ -56,7 +56,6 @@ import Left from "@/layout/components/left.vue";
 import RightTop from "@/layout/components/rightTop.vue";
 import RightFooter from "@/layout/components/rightFooter.vue";
 import Settings from "@/layout/components/settings.vue";
-import Spin from "@/components/spin/index.vue";
 interface LayoutSetup {
   collapsed: boolean;
   toggleCollapsed: () => void;
@@ -67,10 +66,6 @@ interface LayoutSetup {
   breadCrumbs: BreadcrumbType[];
   permissionMenuData: RoutesDataItem[];
   routeItem: RoutesDataItem;
-  isLogin: boolean;
-  loading: boolean;
-  getUser: () => Promise<void>;
-  isReady: boolean;
 }
 export default defineComponent({
   name: "Layout",
@@ -87,39 +82,6 @@ export default defineComponent({
       user: UserStateType;
     }>();
     const route = useRoute();
-    const router = useRouter();
-
-    // 获取当前登录用户信息
-    const currentUser = computed<CurrentUser>(
-      () => store.state.user.currentUser
-    );
-    // 判断是否登录
-    const isLogin = computed<boolean>(() =>
-      currentUser.value ? currentUser.value.id > 0 : false
-    );
-    // 读取当前用户信息func
-    const isReady = ref<boolean>(false); // 是否读取过用户信息
-    const loading = ref<boolean>(false);
-    const getUser = async () => {
-      loading.value = true;
-      await store.dispatch("user/fetchCurrent");
-      if (!isLogin.value && router.currentRoute.value.path !== "/user/login") {
-        router.replace({
-          path: "/user/login",
-          query: {
-            redirect: router.currentRoute.value.path,
-            ...router.currentRoute.value.query,
-          },
-        });
-      }
-      loading.value = false;
-      isReady.value = true;
-    };
-    onMounted(() => {
-      getUser();
-    });
-
-
     // 所有菜单路由
     const menuData: RoutesDataItem[] = vueRoutes(IndexLayoutRoutes);
     // 当前路由 item
@@ -158,10 +120,10 @@ export default defineComponent({
       getBreadcrumbRoutes(routeItem.value, routeParentPaths.value, menuData)
     );
     // 设置title
-    //useTitle(routeItem);
+    useTitle(routeItem);
 
     console.log("permissionMenuData=:");
-    console.log(menuData);
+    console.log(store.state.user.currentUser.roles);
 
     return {
       collapsed: (collapsed as unknown) as boolean,
@@ -173,10 +135,6 @@ export default defineComponent({
       breadCrumbs: (breadCrumbs as unknown) as BreadcrumbType[],
       permissionMenuData: (permissionMenuData as unknown) as RoutesDataItem[],
       routeItem: (routeItem as unknown) as RoutesDataItem,
-      isLogin: (isLogin as unknown) as boolean,
-      loading: (loading as unknown) as boolean,
-      getUser,
-      isReady: (isReady as unknown) as boolean,
     };
   },
 });

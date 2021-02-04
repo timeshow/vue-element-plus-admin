@@ -117,7 +117,7 @@ const StoreModel: ModuleType = {
     },
     async fetchCurrent({ commit }) {
       try {
-        const response: ResponseData = await queryCurrent();
+        const response = await queryCurrent();
         const { data } = response;
         commit("saveCurrentUser", data || {});
         return true;

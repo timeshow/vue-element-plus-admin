@@ -20,12 +20,12 @@
             <template v-for="(item, key) in menuData">
               <a-link
                 :key="key"
-                v-if="!item.hidden"
+                v-if="!item.meta.hidden"
                 :to="item.path"
                 :class="{ active: belongTopMenu === item.path }"
                 class="indexlayout-top-menu-li"
               >
-                {{ t(item.title) }}
+                {{ t(item.meta.title) }}
               </a-link>
             </template>
           </template>

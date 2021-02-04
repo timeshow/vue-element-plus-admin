@@ -14,11 +14,11 @@ export default function useTitle(route: ComputedRef<RoutesDataItem> | Ref<Routes
     } 
 
     watch<RoutesDataItem, false>(route,(route) => {
-        setTitle(route.title);
+        setTitle(route.name);
     })
 
     onMounted(()=> {
-        setTitle(route.value.title);
+        setTitle(route.value.name);
     })
 
 }

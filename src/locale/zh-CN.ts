@@ -64,5 +64,7 @@ const zhCN = {
   "user.register.form.btn-submit": "注 册",
   "user.register.form.btn-jump": "已有账户？现在登录！",
   "user.register.form.register-success": "注册成功，请登录！",
+
+  'page.icon.svg.remark.title': '说明：',
 };
 export default zhCN;

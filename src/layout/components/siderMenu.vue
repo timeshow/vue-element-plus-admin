@@ -66,7 +66,7 @@ export default defineComponent({
           MenuItems.push(...(element.children as RoutesDataItem[]));
         }
       }
-      console.log("MenuItems:"+MenuItems);
+      
       return MenuItems;
     });
     return {

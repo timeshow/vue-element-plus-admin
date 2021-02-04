@@ -1,7 +1,7 @@
 <template>
     <el-breadcrumb>
         <el-breadcrumb-item v-for="item in list" :key="item.path">
-            <a-link :to="item.path">{{t(item.title)}}</a-link>
+            <a-link :to="item.path">{{t(item.meta.title)}}</a-link>
         </el-breadcrumb-item>
     </el-breadcrumb>
 </template>

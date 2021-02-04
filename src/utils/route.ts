@@ -1,6 +1,5 @@
 /**
  * Route utils
- * @author LiQingSong
  */
 import { Component } from 'vue';
 import { RouteLocation, RouteLocationRaw} from 'vue-router';
@@ -11,19 +10,17 @@ import { isExternal } from './validate';
  */
 export interface BreadcrumbType {
   // 标题，路由在菜单、浏览器title 或 面包屑中展示的文字，目前可以使用locales
-  title: string;
+  name: string;
   // 路由地址或外链
   path: string;
 }
 interface RoutesDataItemCore {
   // 菜单中是否隐藏
   hidden?: boolean;
-  // 图标的名称，显示在菜单标题前
-  icon?: string;
   // 权限控制，页面角色(您可以设置多个角色)
   roles?: string[];
   // 标题，路由在菜单、浏览器title 或 面包屑中展示的文字，目前可以使用locales
-  title: string;
+  name: string;
   // 路由地址或外链
   path: string;
   // 子集
@@ -48,6 +45,8 @@ interface RoutesDataItemCore {
    *   3、(默认不设置 path.split('/')[0])，此参数是为了满足特殊页面特殊需求
    */
   belongTopMenu?: string;
+
+  meta: {};
 }
 interface RoutesDataItemComponent extends RoutesDataItemCore {
   // 跳转地址
@@ -69,7 +68,7 @@ export type RoutesDataItem = RoutesDataItemComponent | RoutesDataItemRedirect;
  * @param routesData routes
  */
 export const getRouteItem = (pathname: string, routesData: RoutesDataItem[]): RoutesDataItem => {
-  let item: RoutesDataItem = { title: '', path: '', redirect: '', roles: [] };
+  let item: RoutesDataItem = { name: '', path: '', redirect: '', roles: [], meta: {} };
   for (let index = 0, len = routesData.length; index < len; index += 1) {
     const element = routesData[index];
     if (element.path === pathname) {
