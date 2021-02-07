@@ -12,6 +12,7 @@
       textAlign: 'center',
       cursor: 'pointer',
       borderRadius: '5px 0 0 5px',
+      'z-index':5,
     }"
     @click="show"
   >

@@ -58,3 +58,83 @@ table {
   text-align: center;
   color: #2c3e50;
 }
+.app-container{
+	padding: 20px;
+}
+
+
+.page-component {
+	padding-top: 40px;
+	padding-left: 70px;
+	padding-bottom: 100px;
+	margin-right: 150px;
+	box-sizing: border-box;
+	text-align: left;
+  }
+  .page-component .content > table {
+	border-collapse: collapse;
+	width: 100%;
+	background-color: #fff;
+	font-size: 14px;
+	margin-bottom: 45px;
+	line-height: 1.5em;
+  }
+  .page-component .content > h3 {
+	margin: 55px 0 20px;
+  }
+  .page-container h2,
+  .page-container h3,
+  .page-container h4,
+  .page-container h5 {
+	font-weight: 400;
+	color: #1f2f3d;
+  }
+  .page-container h3 {
+	font-size: 22px;
+  }
+  .demo-block.demo-button .el-row {
+	margin-bottom: 20px;
+	align-items: baseline;
+  }
+  .el-row {
+	display: flex;
+	flex-wrap: wrap;
+	position: relative;
+	box-sizing: border-box;
+  }
+  thead {
+	display: table-header-group;
+	vertical-align: middle;
+	border-color: inherit;
+  }
+  tbody {
+	display: table-row-group;
+	vertical-align: middle;
+	border-color: inherit;
+  }
+  tr {
+	display: table-row;
+	vertical-align: inherit;
+	border-color: inherit;
+  }
+  .page-component .content > table td:first-child,
+  .page-component .content > table th:first-child {
+	padding-left: 10px;
+  }
+  
+  .page-component .content > table th {
+	text-align: left;
+	white-space: nowrap;
+	color: #909399;
+	font-weight: 400;
+  }
+  .page-component .content > table td {
+	color: #606266;
+  }
+  .page-component .content > table td,
+  .page-component .content > table th {
+	border-bottom: 1px solid #dcdfe6;
+	padding: 15px;
+	max-width: 250px;
+	text-align: left;
+  }

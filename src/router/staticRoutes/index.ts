@@ -1,9 +1,7 @@
-import Layout from '@/layout/index.vue'
-import Home from "@/views/home/Home.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
-import Workplace from '@/views/home/Workplace.vue'
-import securityLayout from '@/layout/securityLayout.vue'
+import BlankLayout from '@/layout/blankLayout.vue'
+import Error from '@/views/404.vue'
 
 /**
  *
@@ -19,24 +17,12 @@ import securityLayout from '@/layout/securityLayout.vue'
  */
 
 export const staticRoutes = [
-  // {
-  //   name: "Home",
-  //   path: "/",
-  //   component: Layout,
-  //   redirect: "/home/workplace",
-  //   meta: {
-  //     title: "首页",
-  //     icon: "el-icon-s-home",
-  //   },
-  //   children: [
-  //     {
-  //       name: "Workplace",
-  //       path: "/home/workplace",
-  //       component: Workplace,
-  //       meta: { title: "工作台", icon: "el-icon-s-tools" },
-  //     },
-  //   ],
-  // },
+  {
+    name: "Index",
+    path: "/",
+    component: BlankLayout,
+    redirect: "/home/workplace",
+  },
   {
     name: "Login",
     path: "/user/login",
@@ -51,4 +37,11 @@ export const staticRoutes = [
     meta: { title: "注册", icon: "el-icon-eleme" },
     hidden: true,
   },
+  {
+    name: '404',
+    path: '/404',
+    component: () => Error,
+    meta: { title: "错误页面", icon: "el-icon-eleme" },
+    hidden: true,
+  }
 ];

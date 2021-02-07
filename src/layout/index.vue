@@ -20,12 +20,12 @@
       >
       </right-top>
 
-      <!-- <div class="indexlayout-right-main">
+      <div class="indexlayout-right-main">
         <permission :roles="routeItem.roles">
           <router-view></router-view>
         </permission>
         <right-footer></right-footer>
-      </div> -->
+      </div>
     </div>
 
     <settings></settings>
