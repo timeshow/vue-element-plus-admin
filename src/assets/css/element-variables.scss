@@ -17,20 +17,18 @@ $menu-collapsed-width: 54px;
 // dark theme
 $menu-dark-bg: #222834;
 $menu-dark-submenu-bg: #000c17;
-$menu-dark-color: rgba(#FFF, 0.65);
+$menu-dark-color: rgba(#fff, 0.65);
 $menu-dark-highlight-color: #fff;
-
 
 /* 重置 NavMenu */
 .index-layout-leftmenu {
     background-color: $menu-dark-bg;
     border: none;
 
-
     .el-submenu .el-menu {
         background-color: $menu-dark-submenu-bg;
     }
-    
+
     .el-submenu__title,
     .el-menu-item {
         height: 40px;
@@ -47,21 +45,21 @@ $menu-dark-highlight-color: #fff;
         &:focus,
         &:hover {
             color: $menu-dark-highlight-color !important;
-            background:none;
+            background: none;
             .icon {
                 color: $menu-dark-highlight-color !important;
             }
-        } 
+        }
     }
 
-    .is-active>.el-submenu__title {
+    .is-active > .el-submenu__title {
         color: $menu-dark-highlight-color !important;
         .icon {
             color: $menu-dark-highlight-color !important;
         }
     }
     .el-submenu .el-menu-item.is-active,
-    .el-menu-item.is-active{
+    .el-menu-item.is-active {
         color: $menu-dark-highlight-color !important;
         background-color: $--color-primary !important;
     }
@@ -73,7 +71,6 @@ $menu-dark-highlight-color: #fff;
         margin-bottom: 8px;
     }
 
-
     /* 收起 */
     &.el-menu--collapse {
         width: $menu-collapsed-width;
@@ -84,14 +81,11 @@ $menu-dark-highlight-color: #fff;
                 left: 15px;
                 top: 10px;
                 margin: 0;
-            }         
+            }
         }
     }
-
-
 }
 .index-layout-leftmenu-popper {
-
     .el-menu {
         background-color: $menu-dark-submenu-bg;
     }
@@ -111,21 +105,21 @@ $menu-dark-highlight-color: #fff;
         &:focus,
         &:hover {
             color: $menu-dark-highlight-color !important;
-            background:none;
+            background: none;
             .icon {
                 color: $menu-dark-highlight-color !important;
             }
-        }        
+        }
     }
 
-    .is-active>.el-submenu__title {
+    .is-active > .el-submenu__title {
         color: $menu-dark-highlight-color !important;
         .icon {
             color: $menu-dark-highlight-color !important;
         }
     }
     .el-submenu .el-menu-item.is-active,
-    .el-menu-item.is-active{
+    .el-menu-item.is-active {
         color: $menu-dark-highlight-color !important;
         background-color: $--color-primary !important;
     }
@@ -136,10 +130,7 @@ $menu-dark-highlight-color: #fff;
     .el-menu-item:not(:last-child) {
         margin-bottom: 8px;
     }
-
-
 }
-
 
 /* 重置 Drawer */
 .el-drawer {
@@ -164,18 +155,18 @@ $menu-dark-highlight-color: #fff;
 /*自定义 table 样式*/
 .custom-table {
     .el-table__header {
-        background-color: #F5F7FA;
+        background-color: #f5f7fa;
     }
     .custom-td-header-one,
     .el-table__body tr:hover .custom-td-header-one {
         color: #303133;
         font-weight: bold;
-        background-color: #F5F7FA;
+        background-color: #f5f7fa;
     }
 }
 .custom-table-header {
     color: #303133;
     th {
-        background-color: #F5F7FA;
+        background-color: #f5f7fa;
     }
 }

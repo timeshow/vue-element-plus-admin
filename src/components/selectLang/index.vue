@@ -5,59 +5,64 @@
         </span>
         <template #dropdown>
             <el-dropdown-menu class="menu">
-                <el-dropdown-item v-for="item in locales" :key="item" :command="item" :class="{'active': locale === item}">
+                <el-dropdown-item
+                    v-for="item in locales"
+                    :key="item"
+                    :command="item"
+                    :class="{ active: locale === item }"
+                >
                     <span role="img" :aria-label="languageLabels[item]">
-                        {{languageIcons[item]}}
-                    </span>  
-                    {{languageLabels[item]}}
-                </el-dropdown-item>                
+                        {{ languageIcons[item] }}
+                    </span>
+                    {{ languageLabels[item] }}
+                </el-dropdown-item>
             </el-dropdown-menu>
         </template>
     </el-dropdown>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
-import { setI18nLanguage } from "@/config/i18n";
-import { useI18n } from "vue-i18n";
+import { defineComponent } from 'vue'
+import { setI18nLanguage } from '@/config/i18n'
+import { useI18n } from 'vue-i18n'
 interface SelectLangSetupData {
-    locales: string[];
-    languageLabels: {[key: string]: string};
-    languageIcons: {[key: string]: string};
-    changeLang: ({ key }: any) => void;
-    locale: string;
+    locales: string[]
+    languageLabels: { [key: string]: string }
+    languageIcons: { [key: string]: string }
+    changeLang: ({ key }: any) => void
+    locale: string
 }
 export default defineComponent({
     name: 'SelectLang',
     setup(): SelectLangSetupData {
-        const { locale }  = useI18n();
-       
-        const locales: string[] = ['zh-CN', 'zh-TW', 'en-US'];
-        const languageLabels: {[key: string]: string} = {
+        const { locale } = useI18n()
+
+        const locales: string[] = ['zh-CN', 'zh-TW', 'en-US']
+        const languageLabels: { [key: string]: string } = {
             'zh-CN': '简体中文',
             'en-US': 'English',
-        };
-        const languageIcons: {[key: string]: string} = {
+        }
+        const languageIcons: { [key: string]: string } = {
             'zh-CN': '🇨🇳',
             'en-US': '🇺🇸',
-        };
+        }
         // 切换语言
         const changeLang = (command: string): void => {
-            setI18nLanguage(command, true);
-        };
+            setI18nLanguage(command, true)
+        }
         return {
             locales,
             languageLabels,
             languageIcons,
             changeLang,
-            locale: locale as unknown as string
+            locale: locale as unknown as string,
         }
-    }
+    },
 })
 </script>
 <style lang="scss" scoped>
 @import '../../assets/css/global.scss';
 .dropDown {
-  cursor: pointer;
+    cursor: pointer;
 }
 .menu {
     .el-dropdown-menu__item {

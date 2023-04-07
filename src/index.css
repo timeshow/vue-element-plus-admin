@@ -1,140 +1,216 @@
 /* http://meyerweb.com/eric/tools/css/reset/ */
 /* v1.0 | 20080212 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	font-size: 100%;
-	vertical-align: baseline;
-	background: transparent;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
 }
+
 body {
-	line-height: 1;
+    line-height: 1;
 }
-ol, ul {
-	list-style: none;
+
+ol,
+ul {
+    list-style: none;
 }
-blockquote, q {
-	quotes: none;
+
+blockquote,
+q {
+    quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
 }
 
 /* remember to define focus styles! */
 :focus {
-	outline: 0;
+    outline: 0;
 }
 
 /* remember to highlight inserts somehow! */
 ins {
-	text-decoration: none;
+    text-decoration: none;
 }
+
 del {
-	text-decoration: line-through;
+    text-decoration: line-through;
 }
 
 /* tables still need 'cellspacing="0"' in the markup */
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
 }
-.app-container{
-	padding: 20px;
+
+.app-container {
+    padding: 20px;
 }
 
 
 .page-component {
-	padding-top: 40px;
-	padding-left: 70px;
-	padding-bottom: 100px;
-	margin-right: 150px;
-	box-sizing: border-box;
-	text-align: left;
-  }
-  .page-component .content > table {
-	border-collapse: collapse;
-	width: 100%;
-	background-color: #fff;
-	font-size: 14px;
-	margin-bottom: 45px;
-	line-height: 1.5em;
-  }
-  .page-component .content > h3 {
-	margin: 55px 0 20px;
-  }
-  .page-container h2,
-  .page-container h3,
-  .page-container h4,
-  .page-container h5 {
-	font-weight: 400;
-	color: #1f2f3d;
-  }
-  .page-container h3 {
-	font-size: 22px;
-  }
-  .demo-block.demo-button .el-row {
-	margin-bottom: 20px;
-	align-items: baseline;
-  }
-  .el-row {
-	display: flex;
-	flex-wrap: wrap;
-	position: relative;
-	box-sizing: border-box;
-  }
-  thead {
-	display: table-header-group;
-	vertical-align: middle;
-	border-color: inherit;
-  }
-  tbody {
-	display: table-row-group;
-	vertical-align: middle;
-	border-color: inherit;
-  }
-  tr {
-	display: table-row;
-	vertical-align: inherit;
-	border-color: inherit;
-  }
-  .page-component .content > table td:first-child,
-  .page-component .content > table th:first-child {
-	padding-left: 10px;
-  }
-  
-  .page-component .content > table th {
-	text-align: left;
-	white-space: nowrap;
-	color: #909399;
-	font-weight: 400;
-  }
-  .page-component .content > table td {
-	color: #606266;
-  }
-  .page-component .content > table td,
-  .page-component .content > table th {
-	border-bottom: 1px solid #dcdfe6;
-	padding: 15px;
-	max-width: 250px;
-	text-align: left;
-  }
+    padding-top: 40px;
+    padding-left: 70px;
+    padding-bottom: 100px;
+    margin-right: 150px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.page-component .content>table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #fff;
+    font-size: 14px;
+    margin-bottom: 45px;
+    line-height: 1.5em;
+}
+
+.page-component .content>h3 {
+    margin: 55px 0 20px;
+}
+
+.page-container h2,
+.page-container h3,
+.page-container h4,
+.page-container h5 {
+    font-weight: 400;
+    color: #1f2f3d;
+}
+
+.page-container h3 {
+    font-size: 22px;
+}
+
+.demo-block.demo-button .el-row {
+    margin-bottom: 20px;
+    align-items: baseline;
+}
+
+.el-row {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    box-sizing: border-box;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.page-component .content>table td:first-child,
+.page-component .content>table th:first-child {
+    padding-left: 10px;
+}
+
+.page-component .content>table th {
+    text-align: left;
+    white-space: nowrap;
+    color: #909399;
+    font-weight: 400;
+}
+
+.page-component .content>table td {
+    color: #606266;
+}
+
+.page-component .content>table td,
+.page-component .content>table th {
+    border-bottom: 1px solid #dcdfe6;
+    padding: 15px;
+    max-width: 250px;
+    text-align: left;
+}

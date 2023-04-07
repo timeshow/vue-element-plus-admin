@@ -6,7 +6,6 @@ import store from '@/store'
 
 import '@/mock/index'
 
-
 import 'element-plus/lib/theme-chalk/index.css'
 import 'nprogress/nprogress.css'
 import '@/index.css'

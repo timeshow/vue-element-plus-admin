@@ -19,23 +19,23 @@
  *      })
  *      <IconSvg type="svg文件名" class="" style=""/>
  */
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue'
 export default defineComponent({
     name: 'IconSvg',
     props: {
         type: {
             type: String,
-            required: true
-        }
-    }
-});
+            required: true,
+        },
+    },
+})
 </script>
 <style lang="scss" scoped>
 .svg-icon {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
 }
 </style>

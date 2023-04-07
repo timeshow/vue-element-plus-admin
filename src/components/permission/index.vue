@@ -1,51 +1,54 @@
 <template>
-  <slot v-if="isPermission"></slot>
-  <slot v-else name="otherwise">
-    <result
-      status="403"
-      title="403"
-      subtitle="Sorry, you are not authorized to access this page."
-    >
-      <template #extra>
-        <router-link to="/">
-          <el-button type="primary"> Back Home </el-button>
-        </router-link>
-      </template>
-    </result>
-  </slot>
+    <slot v-if="isPermission"></slot>
+    <slot v-else name="otherwise">
+        <result
+            status="403"
+            title="403"
+            subtitle="Sorry, you are not authorized to access this page."
+        >
+            <template #extra>
+                <router-link to="/">
+                    <el-button type="primary"> Back Home </el-button>
+                </router-link>
+            </template>
+        </result>
+    </slot>
 </template>
 <script lang="ts">
-import { computed, defineComponent, PropType } from "vue";
-import { useStore } from "vuex";
-import Result from "@/components/result/index.vue";
-import { StateType as UserStateType } from "@/store/module/user";
-import { hasPermissionRouteRoles } from "@/utils/route";
+import { computed, defineComponent, PropType } from 'vue'
+import { useStore } from 'vuex'
+import Result from '@/components/result/index.vue'
+import { StateType as UserStateType } from '@/store/module/user'
+import { hasPermissionRouteRoles } from '@/utils/route'
 
 interface PermissionSetup {
-  isPermission: boolean;
+    isPermission: boolean
 }
 
 export default defineComponent({
-  name: "Permission",
-  props: {
-    roles: {
-      type: [String, Array] as PropType<string[] | string>,
+    name: 'Permission',
+    props: {
+        roles: {
+            type: [String, Array] as PropType<string[] | string>,
+        },
     },
-  },
-  components: {
-    Result,
-  },
-  setup(props): PermissionSetup {
-    const store = useStore<{ user: UserStateType }>();
+    components: {
+        Result,
+    },
+    setup(props): PermissionSetup {
+        const store = useStore<{ user: UserStateType }>()
 
-    // 是否有权限
-    const isPermission = computed(() =>
-      hasPermissionRouteRoles(store.state.user.currentUser.roles, props.roles)
-    );
+        // 是否有权限
+        const isPermission = computed(() =>
+            hasPermissionRouteRoles(
+                store.state.user.currentUser.roles,
+                props.roles
+            )
+        )
 
-    return {
-      isPermission: (isPermission as unknown) as boolean,
-    };
-  },
-});
+        return {
+            isPermission: isPermission as unknown as boolean,
+        }
+    },
+})
 </script>

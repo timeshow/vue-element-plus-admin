@@ -1,5 +1,5 @@
-import Login from "@/views/Login.vue";
-import Register from "@/views/Register.vue";
+import Login from '@/views/Login.vue'
+import Register from '@/views/Register.vue'
 import BlankLayout from '@/layout/blankLayout.vue'
 import Error from '@/views/404.vue'
 
@@ -17,31 +17,31 @@ import Error from '@/views/404.vue'
  */
 
 export const staticRoutes = [
-  {
-    name: "Index",
-    path: "/",
-    component: BlankLayout,
-    redirect: "/home/workplace",
-  },
-  {
-    name: "Login",
-    path: "/user/login",
-    component: Login,
-    meta: { title: "登录", icon: "el-icon-eleme" },
-    hidden: true,
-  },
-  {
-    name: "Register",
-    path: "/user/register",
-    component: Register,
-    meta: { title: "注册", icon: "el-icon-eleme" },
-    hidden: true,
-  },
-  {
-    name: '404',
-    path: '/404',
-    component: () => Error,
-    meta: { title: "错误页面", icon: "el-icon-eleme" },
-    hidden: true,
-  }
-];
+    {
+        name: 'Index',
+        path: '/',
+        component: BlankLayout,
+        redirect: '/home/workplace',
+    },
+    {
+        name: 'Login',
+        path: '/user/login',
+        component: Login,
+        meta: { title: '登录', icon: 'el-icon-eleme' },
+        hidden: true,
+    },
+    {
+        name: 'Register',
+        path: '/user/register',
+        component: Register,
+        meta: { title: '注册', icon: 'el-icon-eleme' },
+        hidden: true,
+    },
+    {
+        name: '404',
+        path: '/404',
+        component: () => Error,
+        meta: { title: '错误页面', icon: 'el-icon-eleme' },
+        hidden: true,
+    },
+]

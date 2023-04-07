@@ -1,15 +1,14 @@
 /**
  * 国际化 入口 locale
  */
-import { createI18n } from "vue-i18n";
-import { getLocale, setLocale ,importAllLocales} from "@/utils/i18n";
-
+import { createI18n } from 'vue-i18n'
+import { getLocale, setLocale, importAllLocales } from '@/utils/i18n'
 
 /**
  * elementPlus 多语言配置
  */
-import en_US from "element-plus/lib/locale/lang/en";
-import zh_CN from "element-plus/lib/locale/lang/zh-cn";
+import en_US from 'element-plus/lib/locale/lang/en'
+import zh_CN from 'element-plus/lib/locale/lang/zh-cn'
 import messages from '@/locale/index'
 
 // export const elementPlusMessages: { [key: string]: any } = {
@@ -30,7 +29,7 @@ import messages from '@/locale/index'
 
 const i18n = createI18n({
     locale: getLocale(),
-    messages
+    messages,
 })
 
 /**
@@ -38,10 +37,10 @@ const i18n = createI18n({
  * @param locale
  */
 export function setI18nLanguage(locale: string, realReload = false) {
-  setLocale(locale, realReload, function () {
-    // i18n.global.locale = locale // legacy: true
-    i18n.global.locale = locale;
-  });
+    setLocale(locale, realReload, function () {
+        // i18n.global.locale = locale // legacy: true
+        i18n.global.locale = locale
+    })
 }
 
-export default i18n;
+export default i18n

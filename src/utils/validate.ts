@@ -5,5 +5,5 @@
  * @author LiQingSong
  */
 export const isExternal = (path: string): boolean => {
-  return /^(https?:|mailto:|tel:)/.test(path);
-};
+    return /^(https?:|mailto:|tel:)/.test(path)
+}

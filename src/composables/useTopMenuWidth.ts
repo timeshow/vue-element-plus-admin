@@ -1,45 +1,40 @@
 /**
  * 设置 IndexLayout TopMenuWidth
  */
-import { ComputedRef, onMounted, Ref, ref, watch, nextTick } from 'vue';
+import { ComputedRef, onMounted, Ref, ref, watch, nextTick } from 'vue'
 
-export default function useTopMenuWidth(topNavEnable: ComputedRef<boolean> | Ref<boolean>) {
+export default function useTopMenuWidth(
+    topNavEnable: ComputedRef<boolean> | Ref<boolean>
+) {
+    const topMenuCon = ref<HTMLElement | null>(null)
 
-    const topMenuCon = ref<HTMLElement | null>(null);
+    const topMenuWidth = ref<string>('auto')
 
-    const topMenuWidth = ref<string>('auto');
-
-      const setWidth = async () => {
-        await nextTick();
+    const setWidth = async () => {
+        await nextTick()
         if (topMenuCon.value && topNavEnable.value) {
-            let width = 0;
-            const child = topMenuCon.value.children;
+            let width = 0
+            const child = topMenuCon.value.children
             for (let index = 0, len = child.length; index < len; index++) {
-                const element = child[index] as HTMLElement;
-                width =  width + element.offsetWidth + 0.5;
+                const element = child[index] as HTMLElement
+                width = width + element.offsetWidth + 0.5
             }
-            topMenuWidth.value = width + 'px';
+            topMenuWidth.value = width + 'px'
         } else {
-            topMenuWidth.value = 'auto';
+            topMenuWidth.value = 'auto'
         }
-    };
+    }
 
-
-    watch(topNavEnable,(topNavEnable)=> {
-        setWidth(); 
+    watch(topNavEnable, (topNavEnable) => {
+        setWidth()
     })
 
-    onMounted(()=> {  
-             
-        setWidth();       
+    onMounted(() => {
+        setWidth()
     })
-
 
     return {
         topMenuCon,
-        topMenuWidth
+        topMenuWidth,
     }
-
-
-
 }

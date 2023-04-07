@@ -1,33 +1,33 @@
 <template>
     <router-link to="/" class="indexlayout-top-message">
-      <i class="el-icon-bell" :style="{ fontSize: '16px' }"></i>
-      <el-badge
-        class="indexlayout-top-message-badge"
-        :value="message"
-        type="danger"
-      />
+        <i class="el-icon-bell" :style="{ fontSize: '16px' }"></i>
+        <el-badge
+            class="indexlayout-top-message-badge"
+            :value="message"
+            type="danger"
+        />
     </router-link>
 </template>
 <script lang="ts">
-import { computed, defineComponent, onMounted } from "vue";
-import { useStore } from "vuex";
-import { StateType as UserStateType } from "@/store/module/user";
+import { computed, defineComponent, onMounted } from 'vue'
+import { useStore } from 'vuex'
+import { StateType as UserStateType } from '@/store/module/user'
 interface RightTopMessageSetup {
-    message: number;
+    message: number
 }
 export default defineComponent({
     name: 'RightTopMessage',
     setup(): RightTopMessageSetup {
-        const store = useStore<{user: UserStateType}>();
-        
-        const message = computed<number>(()=> store.state.user.message);
-        onMounted(()=>{
-            store.dispatch("user/fetchMessage");
+        const store = useStore<{ user: UserStateType }>()
+
+        const message = computed<number>(() => store.state.user.message)
+        onMounted(() => {
+            store.dispatch('user/fetchMessage')
         })
         return {
-            message: message as unknown as number
+            message: message as unknown as number,
         }
-    }
+    },
 })
 </script>
 <style lang="scss" scoped>

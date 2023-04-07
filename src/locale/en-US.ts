@@ -1,7 +1,7 @@
 const en_US = {
     message: {
         empty: 'empty',
-        title: 'title'
-    }
+        title: 'title',
+    },
 }
 export default en_US
